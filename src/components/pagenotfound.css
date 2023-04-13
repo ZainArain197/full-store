@@ -1,0 +1,35 @@
+.containr {
+    padding: 40px 0;
+    background: #fff;
+    font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+    width: 100%;
+}
+
+.background-img {
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 500px;
+    background-position: center;
+}
+
+.background-img h1 {
+    font-size: 80px;
+}
+
+.background-img h3 {
+    font-size: 80px;
+}
+
+.link {
+    color: #fff !important;
+    padding: 10px 20px;
+    background: #084646;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+.contant_box {
+    margin-top: -50px;
+}

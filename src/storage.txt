@@ -1,0 +1,71 @@
+
+
+       switch (newData.type) {
+        case "ADD_CART":
+            oldData.carts.push(newData.payload);
+            localStorage.setItem("cartReducer", JSON.stringify(oldData));
+
+            const ItemKaIndex = oldData.carts.findIndex((iteam) => iteam.id === newData.payload.id);
+
+            if (ItemKaIndex >= 0) {
+                oldData.carts[ItemKaIndex].qnty += 1
+                localStorage.setItem("cartReducer", JSON.stringify(oldData));
+
+            } else {
+
+                const setQnty = { ...newData.payload, qnty: 1 }
+                localStorage.setItem("cartReducer", JSON.stringify(oldData));
+                return {
+                    ...oldData,
+                    carts: [...oldData.carts, setQnty]
+                }
+            }
+          
+
+        case "RMV_CART":
+
+            const data = oldData.carts.filter((KoiData) => KoiData.id !== newData.payload);
+            // console.log(data);
+            localStorage.setItem("cartReducer", JSON.stringify(oldData));
+
+            return {
+                ...oldData,
+                carts: data
+            }
+
+
+        case "aik_Item_Ko_Urado":
+
+
+            const ItemKaIndex_dec = oldData.carts.findIndex((item) => item.id === newData.payload.id);
+            //    console.log(ItemKaIndex_dec);
+            // index mil gaya
+
+            if (oldData.carts[ItemKaIndex_dec].qnty >= 1) {
+
+
+                const DecrementAikItem = oldData.carts[ItemKaIndex_dec].qnty -= 1
+                localStorage.setItem("cartReducer", JSON.stringify(oldData));
+
+                console.log([...oldData.carts, DecrementAikItem]);
+                // kam ho raha ahi
+
+            } else if (oldData.carts[ItemKaIndex_dec].qnty === 1) {
+
+                const data = oldData.carts.filter((KoiData) => KoiData.id !== newData.payload);
+                localStorage.setItem("cartReducer", JSON.stringify(oldData));
+                return {
+                    ...oldData,
+                    carts: data
+                }
+
+            }
+       
+
+
+    }
+
+    return {
+        ...oldData,
+        carts: [...oldData.carts]
+    };
